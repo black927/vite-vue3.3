@@ -1,2 +1,0 @@
-import{g as u,I as c}from"./index.es-eb6bd505.js";import{d as n,r as i,u as p,x as l,o as f,k as d,m as o,W as r}from"./index-5927132b.js";const m=n({name:"UserLabel"}),U=n({...m,setup(_){const t=i(),{destroyApp:a}=r,s=p(),e={...u("DEV",s.phoneNumber,s.brand,"/crowd-insight")};return console.log("人群洞察props：",e),l(()=>{a("crowd-insight")}),(g,h)=>(f(),d(o(r),{ref_key:"wujieVueRef",ref:t,width:"100%",height:"100%",name:"crowd-insight",url:e.url,props:e,plugins:[o(c)()]},null,8,["url","plugins"]))}});export{U as default};
-//# sourceMappingURL=crowd-insight-8a192172.js.map
