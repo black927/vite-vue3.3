@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "jsx": "preserve",
+    "lib": ["esnext", "dom"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "strict": true,
+    // 忽略 this 的类型检查, Raise error on this expressions with an implied any type.
+    "noImplicitThis": false,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "#/*": ["./typings/*"]
+    },
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "typings/**/*.d.ts",
+    "mock/**/*.ts"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
