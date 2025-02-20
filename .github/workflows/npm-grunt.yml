@@ -1,28 +1,51 @@
-name: NodeJS with Grunt
-
+name: Build and Deploy
+ 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-
+    branches:
+      - master  # 或者你想要触发构建的分支
+ 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
-
+  build-and-deploy:
+    runs-on: ubuntu-latest  # 使用 Ubuntu 最新版本
+ 
     steps:
-    - uses: actions/checkout@v4
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+    - name: Checkout code
+      uses: actions/checkout@v2  # 获取代码
+ 
+    - name: Setup Node.js
+      uses: actions/setup-node@v2  # 设置 Node.js 环境
       with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Build
+        node-version: '20'  # 使用 Node.js 的特定版本，例如 14.x
+ 
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2.0.1  # 设置 pnpm
+      with:
+        version: 9  # 使用特定版本的 pnpm，例如 6.x
+        run_install: false  # 先不运行安装，因为我们稍后会自定义步骤
+ 
+    - name: Get pnpm store directory
+      id: pnpm-cache
+      shell: bash
       run: |
-        npm install
-        npm run build:dev
+        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+    - name: Setup pnpm cache
+      uses: actions/cache@v2
+      with:
+        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile  # 使用 pnpm 安装依赖，并使用锁文件确保一致性
+ 
+    - name: Build project
+      run: pnpm run build  # 构建你的项目，确保在 package.json 中有相应的 script
+ 
+    # 下面的步骤可以根据你的部署需求进行配置，例如部署到 GitHub Pages 或其他静态站点托管服务。
+    # 这里以部署到 GitHub Pages 为例：
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3  # 使用 GitHub Pages 部署动作
+      with:
+        # github_token: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub token 进行身份验证
+        publish_dir: ./dist  # 指定构建产物的目录，例如 Vite 的默认输出目录是 dist
