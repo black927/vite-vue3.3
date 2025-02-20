@@ -13,7 +13,7 @@
     "build:prod": "vite build --mode production",
     "build:dev": "vite build --mode development",
     "build:qa": "vite build --mode staging",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
     "lint:ts-fix": "eslint --fix ./src --ext .vue,.js,.ts,.jsx,.tsx,.json,.md",
     "lint:prettier": "prettier --write ./src",
     "prepare": "npx simple-git-hooks"

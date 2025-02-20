@@ -30,7 +30,7 @@ const props = {
   // token: '1734320084|lctbxqrW6LJg4Llg.cAwqVORvOtZ2kdnHRRiDuj1Se5P/Hz+Vx9Ft/CNl+Hs=.dc8e3be96eea310d1',
   parentName: 'comm',
   url: userStore.env.abTestUrl,
-  redirectUrl: '/experiment-manage/layer',
+  redirectUrl: '/experiment-manage/list',
 }
 console.log('人群洞察props：', props)
 onUnmounted(() => {
