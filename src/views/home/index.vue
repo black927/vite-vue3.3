@@ -117,7 +117,9 @@ const go = (formEl: FormInstance | undefined, type: '1' | '2') => {
 <template>
   <div class="home-waraper">
     <!-- <el-button type="primary" @click="open">开启新窗口</el-button> -->
+
     <div class="form-container w-600px">
+      <h2>接入平台</h2>
       <el-tabs v-model="activeName" class="demo-tabs">
         <el-tab-pane label="运营中台" name="1" />
         <el-tab-pane label="商业化平台" name="2" />
