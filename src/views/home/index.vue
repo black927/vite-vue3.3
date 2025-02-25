@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, watchEffect } from 'vue'
 import { FormInstance } from 'element-plus'
 import { useRouter } from 'vue-router'
 import useStoreUser from '@/store/modules/user'
 import { MenuListItem } from '@/utils/interface'
-import { getUserMenus } from '@/api/menus'
+import { type PlatformType, getUserMenus } from '@/api/menus'
 import { getUserInfo } from '@/api/user'
 import { ENV_CONFIG } from '@/utils/constant'
+import tea from '@/assets/images/tea.png'
+import coffee from '@/assets/images/coffee.png'
+import liyubai from '@/assets/images/liyubai.jpg'
 const defaultProps = {
   children: 'children',
   label: 'label',
@@ -24,6 +27,8 @@ const ruleForm = ref({
   groupId: '267356',
   menuList: [],
 })
+const activeName = ref<PlatformType>(storeUser.platform)
+
 const validateName = (_rule: any, value: any, callback: any) => {
   const reg = /^1[3-9]\d{9}$/
   if (value === '') callback(new Error('请输入手机号'))
@@ -36,25 +41,37 @@ const rules = reactive({
   token: [{ required: true, message: '请输入token' }],
   groupId: [{ required: true, message: '请输入集团id' }],
 })
+getUserInfo().then((res) => {
+  storeUser.login(res.data)
+})
 const init = () => {
-  getUserMenus().then((res) => {
+  getUserMenus(activeName.value).then((res) => {
     treeData.value = res.data
   })
-  getUserInfo().then((res) => {
-    storeUser.login(res.data)
-  })
 }
-init()
+const brandListMap = {
+  '1': [
+    { lable: '茶百道', value: 'tea', icon: tea },
+    { lable: '咖灰', value: 'coffee', icon: coffee },
+  ],
+  '2': [{ lable: '李与白', value: '351503', icon: liyubai }],
+  '3': [{ lable: '茶百道', value: 'tea', icon: tea }],
+}
+watchEffect(() => {
+  init()
+  storeUser.setPlatform && storeUser.setPlatform(activeName.value)
+  storeUser.setBrandList && storeUser.setBrandList(brandListMap[activeName.value])
+})
 const getData = (values: string[]) => {
   const filterData = treeData.value.filter((v) => {
     const a = values.includes(v.id)
-    const b = v.children?.some(vv => values.includes(vv.id))
+    const b = v.children?.some((vv) => values.includes(vv.id))
     return !a && !b ? false : true
   })
   return filterData.map((v) => {
     return {
       ...v,
-      children: v.children?.filter(vv => values.includes(vv.id)),
+      children: v.children?.filter((vv) => values.includes(vv.id)),
     }
   })
 }
@@ -66,7 +83,8 @@ const getCheckedKeys = () => {
       if (v.children) execute(v.children, true)
     })
   }
-  execute(storeUser.menuList, false)
+  // execute(storeUser.menuList, false)
+  execute(storeUser.menuListMap[activeName.value], false)
   return res.length ? res : ['1', '2', '3', '4', '5']
 }
 const go = (formEl: FormInstance | undefined, type: '1' | '2') => {
@@ -74,9 +92,12 @@ const go = (formEl: FormInstance | undefined, type: '1' | '2') => {
   formEl.validate((valid) => {
     if (valid) {
       const values = treeRef.value.getCheckedKeys()
+      const menuListMap = storeUser.menuListMap
+      menuListMap[activeName.value] = getData(values)
       storeUser.setUserInfo({
         ...ruleForm.value,
         menuList: getData(values),
+        menuListMap,
       })
       if (type === '1') {
         router.push(`/label-tank`)
@@ -96,11 +117,38 @@ const go = (formEl: FormInstance | undefined, type: '1' | '2') => {
 <template>
   <div class="home-waraper">
     <!-- <el-button type="primary" @click="open">开启新窗口</el-button> -->
-    <div class="form-container w-35%">
-      <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="auto">
-        <!-- <el-form-item prop="phoneNumber" label="用户手机号:">
-          <el-input v-model="ruleForm.phoneNumber" placeholder="请输入手机号" clearable maxlength="20" style="width: 300px" />
-        </el-form-item> -->
+    <div class="form-container w-600px">
+      <el-tabs v-model="activeName" class="demo-tabs">
+        <el-tab-pane label="运营中台" name="1" />
+        <el-tab-pane label="商业化平台" name="2" />
+        <el-tab-pane label="数据门户" name="3" />
+      </el-tabs>
+      <el-form v-if="activeName === '1'" ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="auto">
+        <el-form-item prop="env" label="接入外部系统环境:">
+          <el-select v-model="ruleForm.env">
+            <el-option v-for="item in ENV_CONFIG" :key="item" :label="item.label" :value="item" :disabled="item.disabled" />
+          </el-select>
+        </el-form-item>
+        <el-form-item prop="phoneNumber" label="用户手机号:">
+          <el-input v-model="ruleForm.phoneNumber" placeholder="请输入手机号" clearable maxlength="20" />
+        </el-form-item>
+        <el-form-item prop="menuList" label="菜单权限:">
+          <el-tree
+            ref="treeRef"
+            style="width: 200px"
+            :data="treeData"
+            show-checkbox
+            node-key="id"
+            :props="defaultProps"
+            default-expand-all
+            :default-checked-keys="getCheckedKeys()"
+          />
+        </el-form-item>
+        <el-form-item label=" ">
+          <el-button type="primary" @click="go(ruleFormRef, '1')">跳转至标签智库</el-button>
+        </el-form-item>
+      </el-form>
+      <el-form v-if="activeName === '2'" ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="auto">
         <el-form-item prop="env" label="接入外部系统环境:">
           <el-select v-model="ruleForm.env">
             <el-option v-for="item in ENV_CONFIG" :key="item" :label="item.label" :value="item" :disabled="item.disabled" />
@@ -126,8 +174,29 @@ const go = (formEl: FormInstance | undefined, type: '1' | '2') => {
         </el-form-item>
         <el-form-item label=" ">
           <el-button type="primary" @click="go(ruleFormRef, '1')">跳转至商业化平台对接</el-button>
-          <!-- <el-button type="primary" @click="go(ruleFormRef, '1')">跳转至标签智库</el-button> -->
           <!-- <el-button type="primary" @click="go(ruleFormRef, '2')">跳转至内部系统</el-button> -->
+        </el-form-item>
+      </el-form>
+      <el-form v-if="activeName === '3'" ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="auto">
+        <el-form-item prop="env" label="接入外部系统环境:">
+          <el-select v-model="ruleForm.env">
+            <el-option v-for="item in ENV_CONFIG" :key="item" :label="item.label" :value="item" :disabled="item.disabled" />
+          </el-select>
+        </el-form-item>
+        <el-form-item prop="menuList" label="菜单权限:">
+          <el-tree
+            ref="treeRef"
+            style="width: 200px"
+            :data="treeData"
+            show-checkbox
+            node-key="id"
+            :props="defaultProps"
+            default-expand-all
+            :default-checked-keys="getCheckedKeys()"
+          />
+        </el-form-item>
+        <el-form-item label=" ">
+          <el-button type="primary" @click="go(ruleFormRef, '1')">跳转至数据门户</el-button>
         </el-form-item>
       </el-form>
     </div>

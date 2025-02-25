@@ -5,6 +5,7 @@ export const ENV_CONFIG = [
     dataPortalUrl: 'http://localhost:3014/transfer.html#',
     commRedirectUrl: 'https://web-dev.shuxinyc.shop/#/',
     abTestUrl: 'http://localhost:3014/abtest-web/transfer.html#/auth-redirect',
+    userTower: 'http://192.168.240.255:3012/user-tower/auth-redirect',
   },
   {
     label: '开发',
@@ -12,6 +13,7 @@ export const ENV_CONFIG = [
     dataPortalUrl: 'https://data-portal-dev.shuxinyc.shop/transfer.html#',
     commRedirectUrl: 'https://web-dev.shuxinyc.shop/#/',
     abTestUrl: 'https://abtest-mng-dev.shuxinyc.shop/abtest-web/transfer.html#/auth-redirect',
+    userTower: 'https://usertower-dev.shuxinyc.com/user-tower/auth-redirect',
   },
   {
     label: '测试',
@@ -19,6 +21,7 @@ export const ENV_CONFIG = [
     dataPortalUrl: 'https://data-portal-qa.shuxinyc.shop/transfer.html#',
     commRedirectUrl: 'https://web-test.shuxinyc.shop/#/',
     abTestUrl: 'https://abtest-mng-qa.shuxinyc.shop/abtest-web/transfer.html#/auth-redirect',
+    userTower: 'https://usertower-qa.shuxinyc.com/user-tower/auth-redirect',
   },
   {
     label: '生产',
@@ -26,6 +29,7 @@ export const ENV_CONFIG = [
     dataPortalUrl: 'https://data-portal.shuxinyc.shop/transfer.html#',
     commRedirectUrl: 'https://web.shuxinyc.shop/#/',
     abTestUrl: 'https://abtest-mng.shuxinyc.shop/abtest-web/transfer.html#/auth-redirect',
+    userTower: 'https://usertower.shuxinyc.com/user-tower/auth-redirect',
     disabled: true,
   },
 ]

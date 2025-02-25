@@ -11,13 +11,10 @@
 </template>
 
 <script lang="ts" setup name="UserTower">
-import { genCrowdParams } from '@cbd-wujie-components/osp-query'
 import WujieVue from 'wujie-vue3'
 import { InstanceofPlugin } from 'wujie-polyfill'
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
-import useStoreUser from '@/store/modules/user'
-import { authRouter } from '@/utils'
 import useUserStore from '@/store/modules/user'
 
 const router = useRouter()
@@ -25,11 +22,14 @@ const wujieVueRef = ref()
 const userStore = useUserStore()
 const { destroyApp, bus } = WujieVue
 const props = {
-  ...genCrowdParams('DEV', userStore.phoneNumber, userStore.brandId as any, '/crowd'),
-  authInsight: !!authRouter(userStore.menuList, '/crowd-insight'),
-  url: userStore.env.userTower,
+  groupId: userStore.groupId,
+  brandId: userStore.brandId,
+  brandName: userStore.brandName,
+  token: userStore.token,
+  parentName: 'comm',
+  url: userStore.env.value,
+  redirectUrl: '/crowd',
 }
-
 console.log('props：', props)
 
 onMounted(() => {

@@ -32,6 +32,11 @@ export const constantRoutes = [
         name: 'internal-menu',
       },
       {
+        path: '/config',
+        component: () => import('../views/user-tower/config.vue'),
+        name: 'config',
+      },
+      {
         path: '/user-manages',
         component: () => import('../views/user-tower/user-manage.vue'),
         name: 'user-manages',
@@ -47,11 +52,6 @@ export const constantRoutes = [
         name: 'user-tower',
       },
       {
-        path: '/config',
-        component: () => import('../views/user-tower/config.vue'),
-        name: 'config',
-      },
-      {
         path: '/user-label',
         component: () => import('../views/user-tower/user-label.vue'),
         name: 'user-label',
@@ -61,11 +61,44 @@ export const constantRoutes = [
         component: () => import('../views/user-tower/crowd-insight.vue'),
         name: 'crowd-insight',
       },
+      // pc看吧
       {
-        path: '/regional-daily',
-        component: () => import('../views/user-tower/regional-daily.vue'),
-        name: 'regional-daily',
+        path: '/data-portal/regional-daily',
+        component: () => import('../views/data-portal/regional-daily.vue'),
+        name: 'data-portal-regional-daily',
       },
+      // cdp
+      {
+        path: '/commercial/cdp/user-tower',
+        component: () => import('../views/commercial/cdp/user-tower.vue'),
+        name: 'commercial-cdp-user-tower',
+        meta: { title: '人群' },
+      },
+      {
+        path: '/commercial/cdp/crowd-insight',
+        component: () => import('../views/commercial/cdp/crowd-insight.vue'),
+        name: 'commercial-cdp-crowd-insight',
+        meta: { title: '人群洞察' },
+      },
+      {
+        path: '/commercial/cdp/user-label',
+        component: () => import('../views/commercial/cdp/user-label.vue'),
+        name: 'commercial-cdp-user-label',
+        meta: { title: '用户标签' },
+      },
+      {
+        path: '/commercial/cdp/user-manage',
+        component: () => import('../views/commercial/cdp/user-manage.vue'),
+        name: 'commercial-cdp-user-manage',
+        meta: { title: '用户管理' },
+      },
+      {
+        path: '/commercial/cdp/user-group',
+        component: () => import('../views/commercial/cdp/user-group.vue'),
+        name: 'commercial-cdp-user-group',
+        meta: { title: '用户分组' },
+      },
+      // ab-test
       {
         path: '/experiment-manage-list',
         component: () => import('../views/ab-test/list.vue'),

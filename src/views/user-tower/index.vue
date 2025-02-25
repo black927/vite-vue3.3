@@ -34,7 +34,7 @@
         </el-scrollbar>
         <div class="sidebar-bottom">
           <div
-            v-for="item in brandList"
+            v-for="item in userStore.brandList"
             :key="item.value"
             class="sidebar-bottom__item"
             :class="brandvalue === item.value ? 'is-action' : ''"
@@ -85,15 +85,15 @@ interface BrandItem {
 //   // { lable: '茶百道', value: 'tea', icon: tea },
 //   // { lable: '咖灰', value: 'coffee', icon: coffee },
 // ]
-const brandList: BrandItem[] = [{ lable: '李与白', value: '351503', icon: liyubai }]
+// const brandList: BrandItem[] = [{ lable: '李与白', value: '351503', icon: liyubai }]
 const route = useRoute()
 const router = useRouter()
 const userStore = useStoreUser()
 const menuList = userStore.menuList as MenuListItem[]
 const activeMenu = computed(() => (route.meta.activeMenu ? route.meta.activeMenu : route.path) as string)
-userStore.setBrand(brandList[0].value, brandList[0].lable)
+
 const brandvalue = computed(() => {
-  return userStore.brandId || brandList[0].value
+  return userStore.brandId
 })
 const handleChange = (data: BrandItem) => {
   userStore.setBrand(data.value, data.lable)
