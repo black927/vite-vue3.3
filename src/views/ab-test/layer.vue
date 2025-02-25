@@ -10,7 +10,7 @@
   />
 </template>
 
-<script lang="ts" setup name="UserLabel">
+<script lang="ts" setup name="experiment-manage-layer">
 // import { genCrowdParams } from '@cbd-wujie-components/osp-query'
 import WujieVue from 'wujie-vue3'
 import { InstanceofPlugin } from 'wujie-polyfill'

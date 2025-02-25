@@ -25,7 +25,12 @@ export default defineConfig(({ mode, command }) => {
       },
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
     },
-    server: { port: 5170 },
+    server: { 
+      port: 5170,
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',  // 禁用缓存
+      }
+    },
     envDir: `./${ENV_FILE_NAME}/`,
     css: {
       devSourcemap: true,
