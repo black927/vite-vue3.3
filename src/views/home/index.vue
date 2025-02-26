@@ -78,7 +78,7 @@ const getData = (values: string[]) => {
 const getCheckedKeys = () => {
   let res: string[] = []
   const execute = (data: MenuListItem[], is: boolean) => {
-    data.forEach((v) => {
+    (data || []).forEach((v) => {
       is && res.push(v.id)
       if (v.children) execute(v.children, true)
     })
