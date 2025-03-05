@@ -1,7 +1,7 @@
 export const ENV_CONFIG = [
   {
     label: '本地',
-    value: 'http://192.168.125.241:3012/user-tower/auth-redirect',
+    value: 'http://192.168.240.255:3012/user-tower/auth-redirect',
     dataPortalUrl: 'http://localhost:3014/transfer.html#',
     commRedirectUrl: 'https://web-dev.shuxinyc.shop/#/',
     abTestUrl: 'http://localhost:3014/abtest-web/transfer.html#/auth-redirect',

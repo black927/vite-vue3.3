@@ -7,6 +7,7 @@
     :url="props.url"
     :props="props"
     :plugins="[InstanceofPlugin()]"
+    class="p24px bg-#fff"
   />
 </template>
 
