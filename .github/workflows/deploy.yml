@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      GIT_NAME: 'liyang1'
+      GIT_EMAIL: 'liyang1@chabaidao.com'
     steps:
       # 检查代码库
       - name: Checkout code
