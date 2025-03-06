@@ -26,12 +26,6 @@ jobs:
           node-version: lts/*
           cache: pnpm
 
-      # 设置用户名和邮箱
-      - name: Set up Git
-        run: |
-          git config --global user.name "liyang1"
-          git config --global user.email "liyang1@chabaidao.com"
-
      # 安装依赖
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
