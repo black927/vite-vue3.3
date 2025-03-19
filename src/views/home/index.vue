@@ -65,13 +65,13 @@ watchEffect(() => {
 const getData = (values: string[]) => {
   const filterData = treeData.value.filter((v) => {
     const a = values.includes(v.id)
-    const b = v.children?.some((vv) => values.includes(vv.id))
+    const b = v.children?.some(vv => values.includes(vv.id))
     return !a && !b ? false : true
   })
   return filterData.map((v) => {
     return {
       ...v,
-      children: v.children?.filter((vv) => values.includes(vv.id)),
+      children: v.children?.filter(vv => values.includes(vv.id)),
     }
   })
 }
@@ -79,7 +79,7 @@ const getCheckedKeys = () => {
   let res: string[] = []
   const execute = (data: MenuListItem[], is: boolean) => {
     (data || []).forEach((v) => {
-      is && res.push(v.id)
+      if (is || !v.children || !v.children.length) res.push(v.id)
       if (v.children) execute(v.children, true)
     })
   }

@@ -61,6 +61,12 @@ export const constantRoutes = [
         component: () => import('../views/user-tower/crowd-insight.vue'),
         name: 'crowd-insight',
       },
+      // 营销画布
+      {
+        path: '/marketing-canvas',
+        component: () => import('../views/user-tower/marketing-canvas.vue'),
+        name: 'marketing-canvas',
+      },
       // pc看吧
       {
         path: '/data-portal/regional-daily',
@@ -116,65 +122,65 @@ export const constantRoutes = [
       },
     ],
   },
-  // {
-  //   path: '/system',
-  //   component: SystemLayout,
-  //   name: 'system',
-  //   redirect: '/welcome',
-  //   meta: { title: '内部管理系统' },
-  //   children: [
-  //     {
-  //       path: '/welcome',
-  //       component: () => import('../views/system/home/index.vue'),
-  //       name: 'welcome',
-  //       meta: { title: '欢迎页', icon: 'home' },
-  //     },
-  //     {
-  //       path: '/user-manage',
-  //       component: () => import('../views/system/user/user-manage/index.vue'),
-  //       name: 'user-manage',
-  //       meta: { title: '用户管理', icon: 'user' },
-  //     },
-  //     {
-  //       path: '/',
-  //       name: 'tools',
-  //       meta: { title: '工具', icon: 'tool' },
-  //       children: [
-  //         {
-  //           path: 'tools/upload',
-  //           component: () => import('../views/system/tools/upload/index.vue'),
-  //           name: 'upload',
-  //           meta: { title: '文件上传', icon: 'upload' },
-  //         },
-  //         {
-  //           path: 'tools/upload-record',
-  //           component: () => import('../views/system/tools/upload/upload-record.vue'),
-  //           name: 'upload-record',
-  //           hidden: true,
-  //           meta: { title: '上传记录' },
-  //         },
-  //         {
-  //           path: 'tools/warning',
-  //           component: () => import('../views/system/tools/warning/index.vue'),
-  //           name: 'warning',
-  //           meta: { title: '业务预警', icon: 'warning' },
-  //         },
-  //         {
-  //           path: 'tools/echarts',
-  //           component: () => import('../views/system/tools/echarts/index.vue'),
-  //           name: 'echarts',
-  //           meta: { title: '图表', icon: 'warning' },
-  //         },
-  //         {
-  //           path: 'tools/pdf',
-  //           component: () => import('../views/system/tools/pdf/index.vue'),
-  //           name: 'pdf',
-  //           meta: { title: 'pdf预览', icon: 'warning' },
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // },
+  {
+    path: '/system',
+    component: SystemLayout,
+    name: 'system',
+    redirect: '/welcome',
+    meta: { title: '内部管理系统' },
+    children: [
+      {
+        path: '/welcome',
+        component: () => import('../views/system/home/index.vue'),
+        name: 'welcome',
+        meta: { title: '欢迎页', icon: 'home' },
+      },
+      {
+        path: '/user-manage',
+        component: () => import('../views/system/user/user-manage/index.vue'),
+        name: 'user-manage',
+        meta: { title: '用户管理', icon: 'user' },
+      },
+      {
+        path: '/',
+        name: 'tools',
+        meta: { title: '工具', icon: 'tool' },
+        children: [
+          {
+            path: 'tools/upload',
+            component: () => import('../views/system/tools/upload/index.vue'),
+            name: 'upload',
+            meta: { title: '文件上传', icon: 'upload' },
+          },
+          {
+            path: 'tools/upload-record',
+            component: () => import('../views/system/tools/upload/upload-record.vue'),
+            name: 'upload-record',
+            hidden: true,
+            meta: { title: '上传记录' },
+          },
+          {
+            path: 'tools/warning',
+            component: () => import('../views/system/tools/warning/index.vue'),
+            name: 'warning',
+            meta: { title: '业务预警', icon: 'warning' },
+          },
+          {
+            path: 'tools/echarts',
+            component: () => import('../views/system/tools/echarts/index.vue'),
+            name: 'echarts',
+            meta: { title: '图表', icon: 'warning' },
+          },
+          {
+            path: 'tools/pdf',
+            component: () => import('../views/system/tools/pdf/index.vue'),
+            name: 'pdf',
+            meta: { title: 'pdf预览', icon: 'warning' },
+          },
+        ],
+      },
+    ],
+  },
   {
     path: '/vform3',
     component: () => import('../views/vform3/index.vue'),

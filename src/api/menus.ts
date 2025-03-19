@@ -40,6 +40,13 @@ const menusMap = {
         },
       ],
     },
+    {
+      id: '3',
+      label: '营销画布',
+      path: '/marketing-canvas',
+      name: 'marketing-canvas',
+      meta: { title: '营销画布' },
+    },
   ],
   '2': [
     {
