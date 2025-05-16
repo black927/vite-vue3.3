@@ -160,8 +160,17 @@ const menusMap = {
       ],
     },
   ],
+  '4': [
+    {
+      id: '1',
+      label: '智能策略',
+      path: '/intelligent-strategy',
+      name: 'intelligent-strategy',
+      meta: { title: '智能策略' },
+    },
+  ],
 }
-export const getUserMenus = (data: '1' | '2' | '3') => {
+export const getUserMenus = (data: PlatformType) => {
   // return request({
   //   url: '/menus',
   //   method: 'post',
@@ -177,4 +186,4 @@ export const getUserMenus = (data: '1' | '2' | '3') => {
   })
 }
 
-export type PlatformType = '1' | '2' | '3'
+export type PlatformType = '1' | '2' | '3' | '4'

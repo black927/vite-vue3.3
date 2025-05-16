@@ -32,12 +32,21 @@ importers:
       element-plus:
         specifier: ^2.7.3
         version: 2.7.3(vue@3.3.4)
+      github-markdown-css:
+        specifier: ^5.8.1
+        version: 5.8.1
+      highlight.js:
+        specifier: ^11.11.1
+        version: 11.11.1
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
       lodash-unified:
         specifier: ^1.0.3
         version: 1.0.3(@types/lodash-es@4.17.12)(lodash-es@4.17.21)(lodash@4.17.21)
+      marked:
+        specifier: ^15.0.11
+        version: 15.0.11
       mockjs:
         specifier: ^1.1.0
         version: 1.1.0
@@ -62,6 +71,9 @@ importers:
       vue-awesome-swiper:
         specifier: ^5.0.1
         version: 5.0.1(swiper@11.1.9)(vue@3.3.4)
+      vue-draggable-next:
+        specifier: ^2.2.1
+        version: 2.2.1(sortablejs@1.15.6)(vue@3.3.4)
       vue-pdf-embed:
         specifier: ^2.1.1
         version: 2.1.1(vue@3.3.4)
@@ -2198,6 +2210,10 @@ packages:
     resolution: {integrity: sha512-Ln0UQDlxH1BapMu3GPtf7CuYNwRZf2gwCuPqbyG6pB8WfmFpzqcy4xtAaAMUhnNqjMKTiCPZG2oMT3YSx8U2NA==}
     engines: {node: '>=0.10.0'}
 
+  github-markdown-css@5.8.1:
+    resolution: {integrity: sha512-8G+PFvqigBQSWLQjyzgpa2ThD9bo7+kDsriUIidGcRhXgmcaAWUIpCZf8DavJgc+xifjbCG+GvMyWr0XMXmc7g==}
+    engines: {node: '>=10'}
+
   glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
     engines: {node: '>= 6'}
@@ -2313,6 +2329,10 @@ packages:
   he@1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
+
+  highlight.js@11.11.1:
+    resolution: {integrity: sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w==}
+    engines: {node: '>=12.0.0'}
 
   html-minifier-terser@6.1.0:
     resolution: {integrity: sha512-YXxSlJBZTP7RS3tWnQw74ooKa6L9b9i9QYXY21eUEvhZ3u9XLfv6OnFsQq6RxkhHygsaUMvYsZRV5rU/OVNZxw==}
@@ -2712,6 +2732,11 @@ packages:
   map-visit@1.0.0:
     resolution: {integrity: sha512-4y7uGv8bd2WdM9vpQsiQNo41Ln1NvhvDRuVt0k2JZQ+ezN2uaQes7lZeZ+QQUHOLQAtDaBJ+7wCbi+ab/KFs+w==}
     engines: {node: '>=0.10.0'}
+
+  marked@15.0.11:
+    resolution: {integrity: sha512-1BEXAU2euRCG3xwgLVT1y0xbJEld1XOrmRJpUwRCcy7rxhSCwMrmEu9LXoPhHSCJG41V7YcQ2mjKRr5BA3ITIA==}
+    engines: {node: '>= 18'}
+    hasBin: true
 
   mathml-tag-names@2.1.3:
     resolution: {integrity: sha512-APMBEanjybaPzUrfqU0IMU5I0AswKMH7k8OTLs0vvV4KZpExkTkY87nR/zpbuTPj+gARop7aGUbl11pnDfW6xg==}
@@ -3331,6 +3356,9 @@ packages:
     resolution: {integrity: sha512-FtyOnWN/wCHTVXOMwvSv26d+ko5vWlIDD6zoUJ7LW8vh+ZBC8QdljveRP+crNrtBwioEUWy/4dMtbBjA4ioNlg==}
     engines: {node: '>=0.10.0'}
 
+  sortablejs@1.15.6:
+    resolution: {integrity: sha512-aNfiuwMEpfBM/CN6LY0ibyhxPfPbyFeBTYJKCvzkJ2GkUpazIt3H+QIPAMHwqQ7tMKaHz1Qj+rJJCqljnf4p3A==}
+
   source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
@@ -3828,6 +3856,12 @@ packages:
     peerDependenciesMeta:
       '@vue/composition-api':
         optional: true
+
+  vue-draggable-next@2.2.1:
+    resolution: {integrity: sha512-EAMS1IRHF0kZO0o5PMOinsQsXIqsrKT1hKmbICxG3UEtn7zLFkLxlAtajcCcUTisNvQ6TtCB5COjD9a1raNADw==}
+    peerDependencies:
+      sortablejs: ^1.14.0
+      vue: ^3.2.2
 
   vue-eslint-parser@9.3.0:
     resolution: {integrity: sha512-48IxT9d0+wArT1+3wNIy0tascRoywqSUe2E1YalIC1L8jsUGe5aJQItWfRok7DVFGz3UYvzEI7n5wiTXsCMAcQ==}
@@ -6108,6 +6142,8 @@ snapshots:
 
   get-value@2.0.6: {}
 
+  github-markdown-css@5.8.1: {}
+
   glob-parent@5.1.2:
     dependencies:
       is-glob: 4.0.3
@@ -6220,6 +6256,8 @@ snapshots:
       function-bind: 1.1.2
 
   he@1.2.0: {}
+
+  highlight.js@11.11.1: {}
 
   html-minifier-terser@6.1.0:
     dependencies:
@@ -6590,6 +6628,8 @@ snapshots:
   map-visit@1.0.0:
     dependencies:
       object-visit: 1.0.1
+
+  marked@15.0.11: {}
 
   mathml-tag-names@2.1.3: {}
 
@@ -7217,6 +7257,8 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  sortablejs@1.15.6: {}
+
   source-map-js@1.0.2: {}
 
   source-map-js@1.2.0: {}
@@ -7811,6 +7853,11 @@ snapshots:
 
   vue-demi@0.14.5(vue@3.3.4):
     dependencies:
+      vue: 3.3.4
+
+  vue-draggable-next@2.2.1(sortablejs@1.15.6)(vue@3.3.4):
+    dependencies:
+      sortablejs: 1.15.6
       vue: 3.3.4
 
   vue-eslint-parser@9.3.0(eslint@8.41.0):

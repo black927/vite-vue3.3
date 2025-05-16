@@ -1,35 +1,50 @@
-export const ENV_CONFIG = [
+export interface EnvConfig {
+  label: string // 环境名称
+  value: string // 环境地址
+  dataPortalUrl: string // 数据门户地址
+  commRedirectUrl: string // 商业化重定向地址
+  abTestUrl: string // AB测试地址
+  userTower: string // 标签平台地址
+  dataDashboardWeb: string // PC数据看板地址
+  disabled?: boolean // 是否禁用
+}
+
+export const ENV_CONFIG: EnvConfig[] = [
   {
     label: '本地',
     value: 'http://192.168.240.255:3012/user-tower/auth-redirect',
     dataPortalUrl: 'http://localhost:3014/transfer.html#',
-    commRedirectUrl: 'https://web-dev.shuxinyc.shop/#/',
+    commRedirectUrl: 'https://web-dev.shuxinyc.shop/#/login',
     abTestUrl: 'http://localhost:3014/abtest-web/transfer.html#/auth-redirect',
     userTower: 'http://192.168.240.255:3012/user-tower/auth-redirect',
+    dataDashboardWeb: 'http://192.168.240.255:3013/data-dashboard-web',
   },
   {
     label: '开发',
     value: 'https://cdp-dev.shuxinyc.shop/user-tower/auth-redirect',
     dataPortalUrl: 'https://data-portal-dev.shuxinyc.shop/transfer.html#',
-    commRedirectUrl: 'https://web-dev.shuxinyc.shop/#/',
+    commRedirectUrl: 'https://web-dev.shuxinyc.shop/#/login',
     abTestUrl: 'https://abtest-mng-dev.shuxinyc.shop/abtest-web/transfer.html#/auth-redirect',
     userTower: 'https://usertower-dev.shuxinyc.com/user-tower/auth-redirect',
+    dataDashboardWeb: 'https://datadashboard-dev.shuxinyc.com/data-dashboard-web',
   },
   {
     label: '测试',
     value: 'https://cdp-qa.shuxinyc.shop/user-tower/auth-redirect',
     dataPortalUrl: 'https://data-portal-qa.shuxinyc.shop/transfer.html#',
-    commRedirectUrl: 'https://web-test.shuxinyc.shop/#/',
+    commRedirectUrl: 'https://web-test.shuxinyc.shop/#/login',
     abTestUrl: 'https://abtest-mng-qa.shuxinyc.shop/abtest-web/transfer.html#/auth-redirect',
     userTower: 'https://usertower-qa.shuxinyc.com/user-tower/auth-redirect',
+    dataDashboardWeb: 'https://datadashboard-uat.shuxinyc.com/data-dashboard-web',
   },
   {
     label: '生产',
     value: 'https://cdp.shuxinyc.shop/user-tower/auth-redirect',
     dataPortalUrl: 'https://data-portal.shuxinyc.shop/transfer.html#',
-    commRedirectUrl: 'https://web.shuxinyc.shop/#/',
+    commRedirectUrl: 'https://web.shuxinyc.shop/#/login',
     abTestUrl: 'https://abtest-mng.shuxinyc.shop/abtest-web/transfer.html#/auth-redirect',
     userTower: 'https://usertower.shuxinyc.com/user-tower/auth-redirect',
+    dataDashboardWeb: 'https://datadashboard.shuxinyc.com/data-dashboard-web',
     disabled: true,
   },
 ]

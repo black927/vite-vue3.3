@@ -93,3 +93,84 @@ $breakpoints: (
   padding: 15px;
   border-radius: 8px;
 }
+
+// markdown文件样式
+.markdown-preview {
+  font-size: 14px;
+  --table-border: #e5e6eb;
+  --table-header-bg-color: #f0f1f5;
+  --table-row-hover-bg-color: #f5f7fa;
+  ul,
+  li {
+    list-style: revert;
+  }
+  ul {
+    padding-inline-start: revert;
+  }
+  hr {
+    border: none;
+    height: 2px;
+    background-color: var(--table-border);
+    margin: 30px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    display: table;
+    text-indent: initial;
+    unicode-bidi: isolate;
+    border: 1px solid var(--table-border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  thead {
+    color: #1d2129;
+  }
+  th,
+  td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--table-border);
+    border-right: 1px solid var(--table-border);
+  }
+  th:last-child,
+  td:last-child {
+    border-right: none;
+  }
+  tr:last-child td {
+    border-bottom: none;
+  }
+  th {
+    background-color: var(--table-header-bg-color);
+    user-select: none;
+    font-weight: 600;
+  }
+  td {
+    transition: background-color 0.25s ease;
+  }
+  tr {
+    background-color: #fff;
+  }
+  tr:hover > td {
+    background-color: var(--table-row-hover-bg-color);
+  }
+  a {
+    color: rgb(30, 68, 255);
+    cursor: pointer;
+  }
+  a:hover {
+    color: rgba(30, 68, 255, 0.6);
+    text-decoration: underline;
+  }
+}
+
+.markdown-body {
+  ul,
+  li {
+    list-style: revert;
+  }
+  ul {
+    padding-inline-start: revert;
+  }
+}

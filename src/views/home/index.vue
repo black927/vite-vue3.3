@@ -26,6 +26,9 @@ const ruleForm = ref({
   token: storeUser.token,
   groupId: '267356',
   menuList: [],
+  accountNm: storeUser.accountNm,
+  jobNumber: storeUser.jobNumber,
+  name: storeUser.name,
 })
 const activeName = ref<PlatformType>(storeUser.platform)
 
@@ -40,6 +43,9 @@ const rules = reactive({
   phoneNumber: [{ required: true, validator: validateName }],
   token: [{ required: true, message: '请输入token' }],
   groupId: [{ required: true, message: '请输入集团id' }],
+  accountNm: [{ required: true, message: '请输入员工账号' }],
+  jobNumber: [{ required: true, message: '请输入员工工号' }],
+  name: [{ required: true, message: '请输入员工姓名' }],
 })
 getUserInfo().then((res) => {
   storeUser.login(res.data)
@@ -53,9 +59,15 @@ const brandListMap = {
   '1': [
     { lable: '茶百道', value: 'tea', icon: tea },
     { lable: '咖灰', value: 'coffee', icon: coffee },
+    { lable: '隔离环境-测试', value: '398628', icon: tea },
   ],
   '2': [{ lable: '李与白', value: '351503', icon: liyubai }],
   '3': [{ lable: '茶百道', value: 'tea', icon: tea }],
+  '4': [
+    { lable: '茶百道', value: 'tea', icon: tea },
+    { lable: '咖灰', value: 'coffee', icon: coffee },
+    { lable: '隔离环境-测试', value: '398628', icon: tea },
+  ],
 }
 watchEffect(() => {
   init()
@@ -124,6 +136,7 @@ const go = (formEl: FormInstance | undefined, type: '1' | '2') => {
         <el-tab-pane label="运营中台" name="1" />
         <el-tab-pane label="商业化平台" name="2" />
         <el-tab-pane label="数据门户" name="3" />
+        <el-tab-pane label="PC看板接入运营中台" name="4" />
       </el-tabs>
       <el-form v-if="activeName === '1'" ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="auto">
         <el-form-item prop="env" label="接入外部系统环境:">
@@ -176,7 +189,7 @@ const go = (formEl: FormInstance | undefined, type: '1' | '2') => {
         </el-form-item>
         <el-form-item label=" ">
           <el-button type="primary" @click="go(ruleFormRef, '1')">跳转至商业化平台对接</el-button>
-          <!-- <el-button type="primary" @click="go(ruleFormRef, '2')">跳转至内部系统</el-button> -->
+          <el-button type="primary" @click="go(ruleFormRef, '2')">跳转至内部系统</el-button>
         </el-form-item>
       </el-form>
       <el-form v-if="activeName === '3'" ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="auto">
@@ -199,6 +212,37 @@ const go = (formEl: FormInstance | undefined, type: '1' | '2') => {
         </el-form-item>
         <el-form-item label=" ">
           <el-button type="primary" @click="go(ruleFormRef, '1')">跳转至数据门户</el-button>
+        </el-form-item>
+      </el-form>
+      <el-form v-if="activeName === '4'" ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="auto">
+        <el-form-item prop="env" label="接入外部系统环境:">
+          <el-select v-model="ruleForm.env">
+            <el-option v-for="item in ENV_CONFIG" :key="item" :label="item.label" :value="item" :disabled="item.disabled" />
+          </el-select>
+        </el-form-item>
+        <el-form-item prop="accountNm" label="员工账号:">
+          <el-input v-model="ruleForm.accountNm" placeholder="请输入员工账号" clearable maxlength="20" />
+        </el-form-item>
+        <el-form-item prop="jobNumber" label="员工工号:">
+          <el-input v-model="ruleForm.jobNumber" placeholder="请输入员工工号" clearable maxlength="20" />
+        </el-form-item>
+        <el-form-item prop="name" label="员工姓名:">
+          <el-input v-model="ruleForm.name" placeholder="请输入员工姓名" clearable maxlength="20" />
+        </el-form-item>
+        <el-form-item prop="menuList" label="菜单权限:">
+          <el-tree
+            ref="treeRef"
+            style="width: 200px"
+            :data="treeData"
+            show-checkbox
+            node-key="id"
+            :props="defaultProps"
+            default-expand-all
+            :default-checked-keys="getCheckedKeys()"
+          />
+        </el-form-item>
+        <el-form-item label=" ">
+          <el-button type="primary" @click="go(ruleFormRef, '1')">跳转至标签智库</el-button>
         </el-form-item>
       </el-form>
     </div>

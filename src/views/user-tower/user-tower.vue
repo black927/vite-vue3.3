@@ -16,7 +16,6 @@ import WujieVue from 'wujie-vue3'
 import { InstanceofPlugin } from 'wujie-polyfill'
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
-import useStoreUser from '@/store/modules/user'
 import { authRouter } from '@/utils'
 import useUserStore from '@/store/modules/user'
 

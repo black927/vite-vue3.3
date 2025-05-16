@@ -61,6 +61,11 @@ export const constantRoutes = [
         component: () => import('../views/user-tower/crowd-insight.vue'),
         name: 'crowd-insight',
       },
+      {
+        path: '/intelligent-strategy',
+        component: () => import('../views/user-tower/intelligent-strategy.vue'),
+        name: 'intelligent-strategy',
+      },
       // 营销画布
       {
         path: '/marketing-canvas',
@@ -142,6 +147,12 @@ export const constantRoutes = [
         meta: { title: '用户管理', icon: 'user' },
       },
       {
+        path: '/user-label',
+        component: () => import('../views/system/user-label/index.vue'),
+        name: 'user-label',
+        meta: { title: '用户标签', icon: 'user' },
+      },
+      {
         path: '/',
         name: 'tools',
         meta: { title: '工具', icon: 'tool' },
@@ -176,6 +187,12 @@ export const constantRoutes = [
             component: () => import('../views/system/tools/pdf/index.vue'),
             name: 'pdf',
             meta: { title: 'pdf预览', icon: 'warning' },
+          },
+          {
+            path: 'tools/eventSource',
+            component: () => import('../views/system/tools/communication/EventSource.vue'),
+            name: 'eventSource',
+            meta: { title: '后端单向通信', icon: 'tool' },
           },
         ],
       },
