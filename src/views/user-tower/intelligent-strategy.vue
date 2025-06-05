@@ -7,7 +7,7 @@
       name="intelligent-strategy"
       :url="props.url"
       :props="props"
-      :plugins="[InstanceofPlugin()]"
+      :plugins="[InstanceofPlugin(), { patchElementHook }]"
     />
   </div>
 </template>
@@ -18,6 +18,14 @@ import { InstanceofPlugin } from 'wujie-polyfill'
 import { ref, onUnmounted } from 'vue'
 import useUserStore from '@/store/modules/user'
 
+const patchElementHook = (element: Element, iframeWindow: Window) => {
+  if (element.nodeName === 'STYLE') {
+    // @ts-expect-error
+    element.insertAdjacentElement = function (_position, ele) {
+      iframeWindow.document.head.appendChild(ele)
+    }
+  }
+}
 const wujieVueRef = ref()
 const userStore = useUserStore()
 const { destroyApp, bus } = WujieVue
@@ -28,6 +36,7 @@ const props = {
     accountNm: userStore.accountNm,
     jobNumber: userStore.jobNumber,
     name: userStore.name,
+    mobile: userStore.phoneNumber,
   },
 }
 

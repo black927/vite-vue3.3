@@ -220,14 +220,17 @@ const go = (formEl: FormInstance | undefined, type: '1' | '2') => {
             <el-option v-for="item in ENV_CONFIG" :key="item" :label="item.label" :value="item" :disabled="item.disabled" />
           </el-select>
         </el-form-item>
-        <el-form-item prop="accountNm" label="员工账号:">
+        <!-- <el-form-item prop="accountNm" label="员工账号:">
           <el-input v-model="ruleForm.accountNm" placeholder="请输入员工账号" clearable maxlength="20" />
         </el-form-item>
         <el-form-item prop="jobNumber" label="员工工号:">
           <el-input v-model="ruleForm.jobNumber" placeholder="请输入员工工号" clearable maxlength="20" />
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item prop="name" label="员工姓名:">
           <el-input v-model="ruleForm.name" placeholder="请输入员工姓名" clearable maxlength="20" />
+        </el-form-item>
+        <el-form-item prop="phoneNumber" label="员工手机号:">
+          <el-input v-model="ruleForm.phoneNumber" placeholder="请输入员工手机号" clearable maxlength="20" />
         </el-form-item>
         <el-form-item prop="menuList" label="菜单权限:">
           <el-tree
