@@ -15,7 +15,7 @@ import WujieVue from 'wujie-vue3'
 import { InstanceofPlugin } from 'wujie-polyfill'
 import { ref, onUnmounted } from 'vue'
 import useStoreUser from '@/store/modules/user'
-
+import useAppStore from '@/store/modules/app'
 const wujieVueRef = ref()
 
 const { destroyApp } = WujieVue
@@ -29,6 +29,7 @@ const props = {
   parentName: 'comm',
   url: userStore.env.value,
   redirectUrl: '/label-manage/user-label',
+  theme: useAppStore().theme,
 }
 
 onUnmounted(() => {

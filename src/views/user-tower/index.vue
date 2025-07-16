@@ -6,6 +6,13 @@
           <span class="mr10px text-14px">当前环境：{{ userStore.env.label }}</span>
           <el-button type="primary" @click="back">返回首页</el-button>
         </div>
+        <div class="p10px">
+          <el-radio-group :model-value="appStore.theme.key" @change="handleThemeChange" class="mb10px">
+            <el-radio v-for="item in THEMES" :value="item.key" size="large">
+              <div class="color-#fff text-12px px10px rounded-4px h28px leading-27px" :style="{ backgroundColor: item.colors.brand['5'] }">{{ item.name }}</div>
+            </el-radio>
+          </el-radio-group>
+        </div>
         <el-scrollbar>
           <el-menu
             :default-active="activeMenu"
@@ -69,12 +76,13 @@ import { computed } from 'vue'
 import WujieVue from 'wujie-vue3'
 import { useRoute, useRouter } from 'vue-router'
 import useStoreUser from '@/store/modules/user'
+import useAppStore from '@/store/modules/app';
 import { MenuListItem } from '@/utils/interface'
 // import tea from '@/assets/images/tea.png'
 // import coffee from '@/assets/images/coffee.png'
-import liyubai from '@/assets/images/liyubai.jpg'
+// import liyubai from '@/assets/images/liyubai.jpg'
 import { scrollTo } from '@/utils/scroll-to'
-// import { ENV_CONFIG } from '@/utils/constant'
+import { ENV_CONFIG, THEMES } from '@/utils/constant'
 interface BrandItem {
   lable: string
   value: string
@@ -89,6 +97,7 @@ interface BrandItem {
 const route = useRoute()
 const router = useRouter()
 const userStore = useStoreUser()
+const appStore = useAppStore()
 const menuList = userStore.menuList as MenuListItem[]
 const activeMenu = computed(() => (route.meta.activeMenu ? route.meta.activeMenu : route.path) as string)
 
@@ -128,9 +137,14 @@ const go = (path: string, item?: any) => {
 const back = () => {
   router.replace('/home')
 }
+const handleThemeChange = (themeKey: any) => {
+  const theme  = THEMES.find(item => item.key === themeKey) || THEMES[0]
+  appStore.setTheme(theme);
+  WujieVue.bus.$emit('__USER_TOWER_CHANGE_THEME', { theme })
+}
 </script>
 <style lang="scss" scoped>
-@import '../system/layout/index.scss';
+@use '../system/layout/index.scss';
 
 .app-main {
   height: 100vh;

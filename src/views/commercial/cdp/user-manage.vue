@@ -26,6 +26,17 @@ const props = {
   parentName: 'comm',
   redirectUrl: '/user/manage',
   url: 'http://192.168.125.241:3012/user-tower/auth-redirect',
+  theme: {
+    colors: {
+      brand: {
+          '1': '#014DA11A',
+          '2': '#014DA14D',
+          '3': '#014DA173',
+          '4': '#014DA1BF',
+          '5': '#014DA1',
+      },
+    },
+  },
 }
 console.log('props：', props)
 

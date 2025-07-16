@@ -61,7 +61,10 @@ const brandListMap = {
     { lable: '咖灰', value: 'coffee', icon: coffee },
     { lable: '隔离环境-测试', value: '398628', icon: tea },
   ],
-  '2': [{ lable: '李与白', value: '351503', icon: liyubai }],
+  '2': [
+    { lable: '李与白', value: '351503', icon: liyubai },
+    { lable: 'lzh品牌', value: '200001', icon: liyubai }
+  ],
   '3': [{ lable: '茶百道', value: 'tea', icon: tea }],
   '4': [
     { lable: '茶百道', value: 'tea', icon: tea },

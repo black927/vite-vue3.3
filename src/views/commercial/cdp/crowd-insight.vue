@@ -15,12 +15,13 @@ import WujieVue from 'wujie-vue3'
 import { InstanceofPlugin } from 'wujie-polyfill'
 import { ref, onUnmounted } from 'vue'
 import useUserStore from '@/store/modules/user'
+import useAppStore from '@/store/modules/app'
 
 const wujieVueRef = ref()
 
 const { destroyApp } = WujieVue
 const userStore = useUserStore()
-
+const appStore = useAppStore()
 const props = {
   groupId: userStore.groupId,
   brandId: userStore.brandId,
@@ -29,6 +30,7 @@ const props = {
   parentName: 'comm',
   url: userStore.env.value,
   redirectUrl: '/crowd-insight',
+  theme: appStore.theme,
 }
 console.log('人群洞察props：', props)
 onUnmounted(() => {

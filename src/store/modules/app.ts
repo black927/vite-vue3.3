@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie'
 import { defineStore } from 'pinia'
+import { THEMES } from '@/utils/constant';
 const useAppStore = defineStore('app', {
   state: () => ({
     sidebar: {
@@ -9,6 +10,7 @@ const useAppStore = defineStore('app', {
     },
     device: 'desktop',
     size: Cookies.get('size') || 'default',
+    theme: THEMES[0],
   }),
   actions: {
     toggleSideBar(withoutAnimation?: { withoutAnimation: boolean }) {
@@ -34,6 +36,12 @@ const useAppStore = defineStore('app', {
     toggleSideBarHide(status: boolean) {
       this.sidebar.hide = status
     },
+    setTheme(theme: any) {
+      this.theme = theme;
+    }
+  },
+  persist: {
+    paths: ['theme'],
   },
 })
 
