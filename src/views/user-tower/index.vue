@@ -8,7 +8,7 @@
         </div>
         <div class="p10px">
           <el-radio-group :model-value="appStore.theme.key" @change="handleThemeChange" class="mb10px">
-            <el-radio v-for="item in THEMES" :value="item.key" size="large">
+            <el-radio v-for="item in THEMES" :key="item.key" :value="item.key" size="large">
               <div class="color-#fff text-12px px10px rounded-4px h28px leading-27px" :style="{ backgroundColor: item.colors.brand['5'] }">{{ item.name }}</div>
             </el-radio>
           </el-radio-group>
@@ -82,7 +82,7 @@ import { MenuListItem } from '@/utils/interface'
 // import coffee from '@/assets/images/coffee.png'
 // import liyubai from '@/assets/images/liyubai.jpg'
 import { scrollTo } from '@/utils/scroll-to'
-import { ENV_CONFIG, THEMES } from '@/utils/constant'
+import { THEMES } from '@/utils/constant'
 interface BrandItem {
   lable: string
   value: string
